@@ -1,6 +1,6 @@
 (() => {
   const toast = document.querySelector('[data-toast]');
-  const template = `成长支持体验清单\n\n我现在最需要：了解自己 / 缓解压力 / 学习方法 / 持续支持\n我想先体验：测评 / 心理支持 / 干预课程 / 解压游戏 / 科普文章 / 科普视频\n我准备做的第一步：……\n我希望留下的变化：……`;
+  const template = `就业成长自我梳理清单\n\n我当前的就业困惑：……\n我的兴趣、优势与价值取向：……\n我想探索的职业图景 / 目标岗位：……\n我需要补足的能力与实践：……\n我准备推进的生涯行动路径：……\n我需要的就业适配心理支持：……`;
   let toastTimer;
 
   const showToast = (message) => {
@@ -15,9 +15,9 @@
     button.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(template);
-        showToast('体验清单已复制，选择一个入口开始吧。');
+        showToast('就业成长清单已复制，可以从自我觉察开始。');
       } catch {
-        showToast('复制未完成，请手动记下：需要什么、先体验什么、下一步做什么。');
+        showToast('复制未完成，请手动记下：困惑、优势、职业图景、行动路径。');
       }
     });
   });
