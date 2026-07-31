@@ -1,6 +1,6 @@
 (() => {
   const toast = document.querySelector('[data-toast]');
-  const template = `经历翻译四格练习\n\n任务：我负责……\n行动：我通过……\n结果：最后……\n能力：这说明我能……`;
+  const template = `成长支持体验清单\n\n我现在最需要：了解自己 / 缓解压力 / 学习方法 / 持续支持\n我想先体验：测评 / 心理支持 / 干预课程 / 解压游戏 / 科普文章 / 科普视频\n我准备做的第一步：……\n我希望留下的变化：……`;
   let toastTimer;
 
   const showToast = (message) => {
@@ -15,9 +15,9 @@
     button.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(template);
-        showToast('四格模板已复制，找一件小事开始吧。');
+        showToast('体验清单已复制，选择一个入口开始吧。');
       } catch {
-        showToast('复制未完成，请手动记下：任务、行动、结果、能力。');
+        showToast('复制未完成，请手动记下：需要什么、先体验什么、下一步做什么。');
       }
     });
   });
