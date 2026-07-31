@@ -34,7 +34,15 @@
     const platforms = Array.isArray(window.socialPlatforms) ? window.socialPlatforms : [];
     if (!channels || !platforms.length) return;
 
-    channels.innerHTML = platforms.map((platform) => `<article class="channel-card"><div class="channel-copy"><span class="channel-platform">${escapeHtml(platform.platform)}</span><strong>${escapeHtml(platform.account)}</strong><small>${escapeHtml(platform.note)}</small><span class="channel-handle">${escapeHtml(platform.handle)}</span></div><img src="${escapeHtml(platform.image)}" alt="${escapeHtml(platform.platform)}账号入口二维码" loading="lazy" /></article>`).join('');
+    channels.innerHTML = platforms.map((platform) => {
+      const link = platform.href
+        ? `<a class="channel-link" href="${escapeHtml(platform.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(platform.linkText || '打开账号主页')} <span aria-hidden="true">↗</span></a>`
+        : '';
+      const image = platform.href
+        ? `<a class="channel-image-link" href="${escapeHtml(platform.href)}" target="_blank" rel="noopener noreferrer"><img src="${escapeHtml(platform.image)}" alt="${escapeHtml(platform.platform)}账号分享入口二维码" loading="lazy" /></a>`
+        : `<img src="${escapeHtml(platform.image)}" alt="${escapeHtml(platform.platform)}账号入口二维码" loading="lazy" />`;
+      return `<article class="channel-card"><div class="channel-copy"><span class="channel-platform">${escapeHtml(platform.platform)}</span><strong>${escapeHtml(platform.account)}</strong><small>${escapeHtml(platform.note)}</small><span class="channel-handle">${escapeHtml(platform.handle)}</span>${link}</div>${image}</article>`;
+    }).join('');
   };
 
   const showToast = (message) => {
