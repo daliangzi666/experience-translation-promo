@@ -3,6 +3,32 @@
   const template = `就业成长自我梳理清单\n\n我当前的就业困惑：……\n我的兴趣、优势与价值取向：……\n我想探索的职业图景 / 目标岗位：……\n我需要补足的能力与实践：……\n我准备推进的生涯行动路径：……\n我需要的就业适配心理支持：……`;
   let toastTimer;
 
+  const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  }[character]));
+
+  const renderSocialFeed = () => {
+    const feed = document.querySelector('[data-social-feed]');
+    const items = Array.isArray(window.socialFeed) ? window.socialFeed : [];
+    if (!feed || !items.length) return;
+
+    feed.innerHTML = items.map((item) => {
+      const media = item.type === 'video'
+        ? `<div class="feed-media feed-video"><video controls preload="metadata" poster="${escapeHtml(item.poster)}"><source src="${escapeHtml(item.src)}" type="video/mp4" />当前浏览器不支持视频播放。</video></div>`
+        : `<div class="feed-media"><img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" loading="lazy" /></div>`;
+      const action = item.href
+        ? `<a class="feed-link" href="${escapeHtml(item.href)}">阅读文章 <span aria-hidden="true">↗</span></a>`
+        : `<span class="feed-link feed-link-muted">账号内容 <span aria-hidden="true">✦</span></span>`;
+      return `<article class="feed-card feed-${escapeHtml(item.type)}">${media}<div class="feed-body"><div class="feed-meta"><span>${escapeHtml(item.category)}</span><time datetime="${escapeHtml(item.date)}">${escapeHtml(item.date)}</time></div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.excerpt)}</p>${action}</div></article>`;
+    }).join('');
+  };
+
+  renderSocialFeed();
+
   const showToast = (message) => {
     if (!toast) return;
     toast.textContent = message;
