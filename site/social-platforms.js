@@ -1,6 +1,20 @@
 window.socialPlatforms = [
   ...(Array.isArray(window.socialPlatforms) ? window.socialPlatforms : []),
   {
+    platform: '小红书',
+    account: '劳有心获成长局',
+    handle: 'laoyouxinhuo',
+    image: './assets/xiaohongshu-entry.jpg',
+    note: '扫码进入小红书主页',
+  },
+  {
+    platform: '抖音',
+    account: '劳有心获成长局',
+    handle: 'laoyouxinhuo',
+    image: './assets/douyin-entry.jpg',
+    note: '扫码进入抖音主页',
+  },
+  {
     platform: 'B站视频账号',
     account: '劳有心获成长局',
     handle: 'UID 3632320240158954',
