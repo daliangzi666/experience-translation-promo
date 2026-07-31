@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-<div class="toolbar"><button id="copyBtn">复制公众号正文</button><span id="status">点击后到公众号后台直接粘贴</span></div>
+<div class="toolbar"><button id="copyBtn">复制公众号正文</button></div>
 <main class="phone"><article id="article"><section style="font-family: 'Noto Serif SC', 'Songti SC', 'Source Han Serif SC', 'PingFang SC', serif; font-size: 15.5px; color: #3a2e26; line-height: 1.9; letter-spacing: 0.5px; word-spacing: 2px; padding: 20px 22px; background: #fbf7f0;">
 <blockquote style="margin: 26px 0; padding: 20px 24px; background: #f4ead8; border-left: 4px solid #c9a27d; color: #5a4636; font-size: 14.5px; border-radius: 0 6px 6px 0; line-height: 1.9; font-style: italic;"><strong style="color: #5a2f1a; font-weight: 700; border-bottom: 2px solid #e8c88a; padding: 0 1px;">劳有意思 · 第01期</strong>  我们不劝你“多吃苦”，只想聊聊：为什么有些忙碌让人疲惫，有些亲手完成的小事却会变成底气。</blockquote>
 <p style="margin: 18px 0; text-indent: 0; text-align: justify; color: #3a2e26; line-height: 1.95;">你可能有过这样的时刻。</p>
@@ -92,12 +92,13 @@
 <li style="margin: 12px 0; line-height: 1.9; color: #3a2e26; font-weight: 400;"><span style="display: inline-block; color: #7a3a28; font-family: 'Georgia','Times New Roman',serif; font-weight: 400; font-size: 24px; font-style: italic; margin-right: 10px; min-width: 24px; line-height: 1; vertical-align: -3px;">2</span>Lee, E. H., Yin, Y., Jia, N., &amp; Wakslak, C. J. (2026). <em style="font-style: italic; color: #7a4e3b;">Relying on AI at work reduces self-efficacy, ownership, and meaning while active collaboration mitigates the effects</em>. Scientific Reports, 16, 13583. https://doi.org/10.1038/s41598-026-42312-6</li></ol>
 </section></article></main>
 <script>
-const btn=document.getElementById('copyBtn'),status=document.getElementById('status'),article=document.getElementById('article');
+const btn=document.getElementById('copyBtn'),article=document.getElementById('article');
 btn.addEventListener('click',()=>{
   const range=document.createRange();range.selectNodeContents(article);
   const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);
   let ok=false;try{ok=document.execCommand('copy')}catch(e){ok=false}
-  sel.removeAllRanges();status.textContent=ok?'已复制，请到公众号正文区粘贴':'浏览器未自动复制，请手动选中正文复制';
+  sel.removeAllRanges();btn.textContent=ok?'已复制正文':'请手动选择复制';
+  window.setTimeout(()=>{btn.textContent='复制公众号正文'},1800);
 });
 </script>
 </body></html>
