@@ -1,6 +1,6 @@
 (() => {
   const toast = document.querySelector('[data-toast]');
-  const template = `劳有心获成长局·自我照顾清单\n\n我最近的状态：……\n我想先了解的方向：测评 / 心理支持 / 干预课程 / 解压游戏 / 科普内容\n我愿意为自己做的一件小事：……\n我需要联系的支持对象：……\n我想留下的变化：……`;
+  const template = `劳有所获·职有底气·成长行动清单\n\n我投入过的一项真实劳动经历：……\n我从中获得的能力或价值：……\n我想继续练习的一项能力：……\n我下一步想完成的行动：……\n我需要联系的支持对象：……\n我想留下的作品、反思或能力证据：……`;
   let toastTimer;
 
   const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({
@@ -54,22 +54,22 @@
   };
 
   const assessmentTypes = [
-    { name: '近期状态', note: '了解这段时间的情绪与压力', time: '约 3 分钟' },
-    { name: '学习与生活', note: '看看精力、睡眠和节奏是否平衡', time: '约 5 分钟' },
-    { name: '支持需求', note: '找到你现在最需要的陪伴方式', time: '约 3 分钟' },
+    { name: '能力与价值', note: '了解劳动带来的能力增值与价值确认', time: '约 3 分钟' },
+    { name: '职业准备', note: '看看劳动经历如何连接下一步就业行动', time: '约 5 分钟' },
+    { name: '支持与归属', note: '找到课程、任务与资源联结的需要', time: '约 3 分钟' },
   ];
   const assessmentQuestions = [
     {
-      prompt: '最近一周，你有多常觉得事情压在一起？',
-      options: [{ label: '很少', value: 0 }, { label: '偶尔', value: 1 }, { label: '经常', value: 2 }],
+      prompt: '最近一项真实劳动经历中，你能说清自己完成了什么、学会了什么吗？',
+      options: [{ label: '还说不清', value: 0 }, { label: '能说出一些', value: 1 }, { label: '比较清楚', value: 2 }],
     },
     {
-      prompt: '当你感到压力时，通常能找到让自己缓一缓的方法吗？',
-      options: [{ label: '可以找到', value: 0 }, { label: '有时可以', value: 1 }, { label: '还没有', value: 2 }],
+      prompt: '当你想到下一步学习或就业行动时，你有多大把握把经历讲出来？',
+      options: [{ label: '还没有把握', value: 0 }, { label: '可以试着讲', value: 1 }, { label: '比较有把握', value: 2 }],
     },
     {
-      prompt: '此刻你最希望得到哪一种帮助？',
-      options: [{ label: '知道发生了什么', value: 0 }, { label: '学一个具体方法', value: 1 }, { label: '有人陪我聊聊', value: 2 }],
+      prompt: '在需要帮助时，你能找到同伴、老师或专业资源吗？',
+      options: [{ label: '还不太能', value: 0 }, { label: '知道一些入口', value: 1 }, { label: '可以找到', value: 2 }],
     },
   ];
   const assessmentState = {
@@ -85,19 +85,19 @@
     const score = assessmentState.answers.reduce((total, value) => total + value, 0);
     if (score <= 2) {
       return {
-        title: '你正在照顾好自己的节奏',
-        copy: '继续保持对状态的觉察，也可以把本次测评当作一个轻量的记录，过一段时间再回来看看。',
+        title: '你已经积累了一些成长线索',
+        copy: '可以把这次结果留下来，再回到一项真实劳动经历中，看看自己的能力、价值和下一步行动。',
       };
     }
     if (score >= 5) {
       return {
-        title: '最近可能需要更多支持',
-        copy: '你不必独自扛着。建议先选择支持区中的放松练习或求助指引，也可以和身边信任的人说一说。',
+        title: '现在可以为自己补充更多支持',
+        copy: '你不必独自完成下一步。可以先选择课程、劳动任务或支持资源，也可以和身边信任的人说一说。',
       };
     }
     return {
-      title: '你的状态有一些紧绷',
-      copy: '可以先从一段短时放松开始，再选择一篇科普或一堂课程。给自己一点缓冲，不必马上解决全部问题。',
+      title: '你的成长路径还有一些可以补足的地方',
+      copy: '可以先从一项小任务或一堂课程开始，把经历中的能力和价值慢慢说清楚，再决定下一步行动。',
     };
   };
 
@@ -176,12 +176,12 @@
   const supportMoods = ['有点累', '压力中', '说不清', '还不错'];
   const supportTypes = [
     { name: '先安静一下', note: '呼吸练习与短时放松' },
-    { name: '学一个方法', note: '结构化课程与行动建议' },
-    { name: '找人聊聊', note: '支持资源与求助指引' },
+    { name: '找一位支持者', note: '朋辈、教师与专业资源联结' },
+    { name: '练一个行动', note: '课程练习与劳动任务建议' },
   ];
   const supportCourses = [
-    { title: '把压力放在桌面上', note: '识别压力来源，练习拆解当下', duration: '12 分钟', tag: '干预课程' },
-    { title: '睡前给大脑留白', note: '一套适合夜晚的放松练习', duration: '8 分钟', tag: '睡眠支持' },
+    { title: '把劳动经历放在桌面上', note: '识别投入、成果与能力证据，练习说清一项真实经历', duration: '12 分钟', tag: '育能课程' },
+    { title: '为下一步行动留出空间', note: '用一段短练习整理压力，再选一项可以完成的劳动任务', duration: '8 分钟', tag: '育心支持' },
   ];
   const supportState = { selectedMood: -1, selectedSupport: 0, gameStarted: false };
 
@@ -193,7 +193,7 @@
       ? `<div class="support-game support-game-playing"><div class="breath-orbit" aria-hidden="true"><div class="breath-core"></div></div><strong>跟着圆点，慢慢吸气，再慢慢呼气。</strong><small>不需要做到完美，只要把注意力带回来。</small><button type="button" class="experience-button experience-button-gold" data-support-action="finish-game">完成这一轮</button></div>`
       : `<button type="button" class="support-game support-game-entry" data-support-action="start-game"><span class="game-circle">PLAY</span><span><strong>十分钟解压游戏</strong><small>把注意力带回当下，轻轻玩一会儿。</small></span><b aria-hidden="true">进入 →</b></button>`;
 
-    app.innerHTML = `<div class="support-question">此刻的我……</div><div class="mood-list">${supportMoods.map((mood, index) => `<button type="button" class="mood-chip ${supportState.selectedMood === index ? 'is-selected' : ''}" data-support-mood="${index}" aria-pressed="${supportState.selectedMood === index}">${escapeHtml(mood)}</button>`).join('')}</div><div class="support-subheading"><span>A SMALL STEP</span><strong>想先试试什么？</strong></div><div class="support-option-list">${supportTypes.map((type, index) => `<button type="button" class="support-option ${supportState.selectedSupport === index ? 'is-selected' : ''}" data-support-type="${index}" aria-pressed="${supportState.selectedSupport === index}"><span>0${index + 1}</span><span><strong>${escapeHtml(type.name)}</strong><small>${escapeHtml(type.note)}</small></span><b aria-hidden="true">→</b></button>`).join('')}</div><div class="support-subheading support-course-heading"><span>COURSE / GAME</span><strong>给今天的自己一点空间</strong></div><div class="support-course-list">${supportCourses.map((course) => `<button type="button" class="support-course" data-support-course="${escapeHtml(course.title)}"><span>${escapeHtml(course.tag)}</span><strong>${escapeHtml(course.title)}</strong><small>${escapeHtml(course.note)}</small><em>${escapeHtml(course.duration)} <b>开始 →</b></em></button>`).join('')}${game}</div><div class="support-safety"><strong>需要更及时的帮助？</strong><p>本项目提供的是日常支持与健康科普，不代替诊断和治疗。如果情况紧急，请优先联系身边的人或专业机构。</p><button type="button" data-support-action="safety">查看求助提醒</button></div>`;
+    app.innerHTML = `<div class="support-question">此刻的我需要……</div><div class="mood-list">${supportMoods.map((mood, index) => `<button type="button" class="mood-chip ${supportState.selectedMood === index ? 'is-selected' : ''}" data-support-mood="${index}" aria-pressed="${supportState.selectedMood === index}">${escapeHtml(mood)}</button>`).join('')}</div><div class="support-subheading"><span>A SMALL STEP</span><strong>想先获得哪种支持？</strong></div><div class="support-option-list">${supportTypes.map((type, index) => `<button type="button" class="support-option ${supportState.selectedSupport === index ? 'is-selected' : ''}" data-support-type="${index}" aria-pressed="${supportState.selectedSupport === index}"><span>0${index + 1}</span><span><strong>${escapeHtml(type.name)}</strong><small>${escapeHtml(type.note)}</small></span><b aria-hidden="true">→</b></button>`).join('')}</div><div class="support-subheading support-course-heading"><span>COURSE / TASK</span><strong>给真实行动一个支点</strong></div><div class="support-course-list">${supportCourses.map((course) => `<button type="button" class="support-course" data-support-course="${escapeHtml(course.title)}"><span>${escapeHtml(course.tag)}</span><strong>${escapeHtml(course.title)}</strong><small>${escapeHtml(course.note)}</small><em>${escapeHtml(course.duration)} <b>开始 →</b></em></button>`).join('')}${game}</div><div class="support-safety"><strong>需要更及时的帮助？</strong><p>本项目提供的是日常支持与健康科普，不代替诊断和治疗。如果情况紧急，请优先联系身边的人或专业机构。</p><button type="button" data-support-action="safety">查看求助提醒</button></div>`;
   };
 
   const supportApp = document.querySelector('[data-support-app]');
@@ -239,23 +239,23 @@
 
   const serviceTemplates = {
     assessment: `
-      <p class="service-modal-kicker">ASSESSMENT / 01 · 现在就可以开始</p>
-      <h2 id="service-modal-title">先了解一下，<em>此刻的自己。</em></h2>
-      <p class="service-modal-lede">这里是一份轻量的自我了解工具，不给你贴标签，只帮助你把最近的状态说清楚一点。</p>
+      <p class="service-modal-kicker">ASSESSMENT / 01 · 劳动成长入口</p>
+      <h2 id="service-modal-title">先看见劳动中的收获，<em>再找到下一步。</em></h2>
+      <p class="service-modal-lede">这是一份面向大学生劳动成长的轻量工具，不给你贴标签，而是帮助你把真实经历中的能力、价值、职业准备和支持需要说清楚。</p>
       <div class="service-modal-section">
         <div class="service-modal-section-title"><strong>你可以从这三个方向开始</strong><span>约 3—5 分钟</span></div>
         <div class="service-modal-list">
-          <div><strong>近期状态</strong><small>了解这段时间的情绪与压力。</small></div>
-          <div><strong>学习与生活</strong><small>看看精力、睡眠和节奏是否平衡。</small></div>
-          <div><strong>支持需求</strong><small>找到你现在最需要的陪伴方式。</small></div>
+          <div><strong>能力与价值</strong><small>了解劳动带来的能力增值与价值确认。</small></div>
+          <div><strong>职业准备</strong><small>看看劳动经历如何连接下一步就业行动。</small></div>
+          <div><strong>支持与归属</strong><small>找到课程、任务与资源联结的需要。</small></div>
         </div>
-        <p class="service-modal-note"><strong>提示：</strong>测评结果仅供自我了解、课程匹配与成长记录，不替代临床诊断。你可以随时停下来。</p>
+        <p class="service-modal-note"><strong>提示：</strong>结果用于教育支持、课程匹配与成长记录，你可以按自己的节奏完成，也可以随时停下来。</p>
       </div>
       <div class="service-modal-actions"><button class="button button-primary" type="button" data-service-modal-action="jump-assessment">进入 03 测评区 <span aria-hidden="true">→</span></button></div>`,
     support: `
-      <p class="service-modal-kicker">SUPPORT / 02 · 先照顾当下</p>
-      <h2 id="service-modal-title">今天需要哪一种<em>陪伴？</em></h2>
-      <p class="service-modal-lede">不用准备完整的答案。先选一个最接近你的感受，我们会给你一条轻一点的下一步建议。</p>
+      <p class="service-modal-kicker">SUPPORT / 02 · 连接支持资源</p>
+      <h2 id="service-modal-title">今天需要哪一种<em>支持？</em></h2>
+      <p class="service-modal-lede">不用准备完整的答案。先选一个最接近你的感受，我们会给你一条轻一点的课程、任务或支持资源建议。</p>
       <div class="service-modal-section">
         <div class="service-modal-section-title"><strong>此刻的我……</strong><span>选一个就好</span></div>
         <div class="modal-choice-grid">
@@ -268,9 +268,9 @@
       </div>
       <div class="service-modal-actions"><button class="button button-primary" type="button" data-service-modal-action="jump-support">进入心理支持区 <span aria-hidden="true">→</span></button></div>`,
     course: `
-      <p class="service-modal-kicker">COURSE / 03 · 把方法练起来</p>
-      <h2>给压力一个出口，<em>给行动一个支点。</em></h2>
-      <p class="service-modal-lede">干预课程会把复杂的情绪和压力拆成一个个可以练习的小步骤。下面先提供两个体验单元，后续可以继续填充完整课程。</p>
+      <p class="service-modal-kicker">COURSE / 03 · 育心—育能—育志</p>
+      <h2>把方法放进真实任务，<em>让能力留下证据。</em></h2>
+      <p class="service-modal-lede">干预课程把心理资本、能力训练和职业行动放进真实劳动任务。下面先提供两个体验单元，后续可以继续填充完整的6讲课程与21天任务。</p>
       <div class="service-modal-section">
         <div class="service-modal-section-title"><strong>先试一节小课</strong><span>轻量体验</span></div>
         <div class="modal-course-list">
@@ -292,9 +292,9 @@
         </div>
       </div>`,
     article: `
-      <p class="service-modal-kicker">READ / 05 · 读懂心理</p>
-      <h2>把复杂的心理知识，<em>讲得容易一点。</em></h2>
-      <p class="service-modal-lede">先从一篇文章开始，给自己的经历多一个解释角度。内容会持续更新，也欢迎把你想了解的问题留下来。</p>
+      <p class="service-modal-kicker">READ / 05 · 劳动成长科普</p>
+      <h2>把劳动中的收获，<em>讲得容易一点。</em></h2>
+      <p class="service-modal-lede">先从一篇文章开始，给真实经历多一个解释角度。内容围绕劳动获得感、心理资本、就业心理与经历表达持续更新。</p>
       <div class="service-modal-section">
         <div class="service-modal-section-title"><strong>现在可以阅读</strong><span>科普文章</span></div>
         <div class="modal-article-grid">
@@ -303,9 +303,9 @@
         </div>
       </div>`,
     video: `
-      <p class="service-modal-kicker">WATCH / 06 · 轻松观看</p>
-      <h2>用一段短视频，<em>理解一段成长。</em></h2>
-      <p class="service-modal-lede">把方法讲得更轻一点，适合课堂分享，也适合在需要的时候暂停下来，慢慢看。</p>
+      <p class="service-modal-kicker">WATCH / 06 · 实践过程与科普</p>
+      <h2>用一段短视频，<em>理解一段劳动成长。</em></h2>
+      <p class="service-modal-lede">把实践故事、课程工具和心理科普讲得更轻一点，适合课堂分享，也适合在需要的时候暂停下来，慢慢看。</p>
       <div class="service-modal-section">
         <div class="service-modal-section-title"><strong>现在可以观看</strong><span>科普视频</span></div>
         <div class="modal-video-grid">
@@ -317,58 +317,58 @@
 
   const journeyTemplates = {
     state: `
-      <p class="service-modal-kicker">STEP / 01 · 先看见</p>
-      <h2 id="service-modal-title">先给此刻的自己，<em>一个温和的名字。</em></h2>
-      <p class="service-modal-lede">看见状态不是给自己下结论，而是先知道“我正在经历什么”。从一个感受、一处身体反应或一件最占心力的事开始，就已经足够。</p>
+      <p class="service-modal-kicker">STEP / 01 · 育心</p>
+      <h2 id="service-modal-title">先看见劳动中的收获，<em>再把资源用起来。</em></h2>
+      <p class="service-modal-lede">从一项真实劳动经历开始，辨认能力增值、价值确认，以及希望、自我效能、韧性和乐观等可以继续发展的心理资源。</p>
       <div class="service-modal-section">
-        <div class="service-modal-section-title"><strong>可以留意这三件事</strong><span>不急着判断</span></div>
+        <div class="service-modal-section-title"><strong>可以留意这三件事</strong><span>先把经历说清楚</span></div>
         <div class="service-modal-list">
-          <div><strong>感受</strong><small>最近最常出现的情绪是什么？它想告诉你什么？</small></div>
-          <div><strong>身体</strong><small>睡眠、精力和紧绷感，有没有在提醒你慢下来？</small></div>
-          <div><strong>处境</strong><small>此刻最消耗你的事情是什么？最希望得到哪种支持？</small></div>
+          <div><strong>能力</strong><small>这项劳动让你学会了什么，完成了什么以前不会的事？</small></div>
+          <div><strong>价值</strong><small>谁看见了你的投入？这项经历为什么对你有意义？</small></div>
+          <div><strong>资源</strong><small>你已经具备哪些力量，还需要哪一种支持继续行动？</small></div>
         </div>
-        <p class="service-modal-note"><strong>给自己的提醒：</strong>不需要把一切都说清楚，先把一个小小的感受放到桌面上。</p>
+        <p class="service-modal-note"><strong>给自己的提醒：</strong>劳动获得感不是给经历打分，而是把真实行动带来的成长线索留下来。</p>
       </div>
       <div class="service-modal-actions"><button class="button button-primary" type="button" data-service-modal-action="jump-assessment">进入 03 测评区 <span aria-hidden="true">→</span></button></div>`,
     method: `
-      <p class="service-modal-kicker">STEP / 02 · 找到方法</p>
-      <h2 id="service-modal-title">不用一次做完，<em>先选一个愿意试的入口。</em></h2>
-      <p class="service-modal-lede">适合你的方法，不一定是别人推荐最多的那个。可以从“我现在愿意做什么”出发，给自己一个轻一点的选择。</p>
+      <p class="service-modal-kicker">STEP / 02 · 育能</p>
+      <h2 id="service-modal-title">把方法放进真实任务，<em>练出可以迁移的能力。</em></h2>
+      <p class="service-modal-lede">课程和任务不是内容堆叠，而是帮助你把目标拆开、把行动做完、把结果复盘成能力证据。</p>
       <div class="service-modal-section">
-        <div class="service-modal-section-title"><strong>按当下的需要来选</strong><span>选一个就好</span></div>
+        <div class="service-modal-section-title"><strong>可以从一个能力开始</strong><span>做中学、做中练</span></div>
         <div class="service-modal-list">
-          <div><strong>想先理解</strong><small>从测评、科普文章或视频开始，给经历多一个解释角度。</small></div>
-          <div><strong>想先缓一缓</strong><small>做一轮呼吸练习、短课或解压游戏，把注意力带回当下。</small></div>
-          <div><strong>想有人陪</strong><small>进入心理支持区，选择一句最接近此刻的感受。</small></div>
+          <div><strong>目标拆解</strong><small>把“想做好”变成今天可以完成的一步任务。</small></div>
+          <div><strong>协作沟通</strong><small>在真实分工中表达需要、回应反馈并完成共同成果。</small></div>
+          <div><strong>成果复盘</strong><small>把作品、反馈和反思整理成可表达的能力证据。</small></div>
         </div>
       </div>
       <div class="service-modal-actions"><button class="button button-primary" type="button" data-service-modal-action="jump-services">查看支持服务 <span aria-hidden="true">→</span></button></div>`,
     practice: `
-      <p class="service-modal-kicker">STEP / 03 · 练习支持</p>
-      <h2 id="service-modal-title">把一个方法带回今天，<em>就已经在改变。</em></h2>
-      <p class="service-modal-lede">练习不需要很长，也不要求一次见效。你可以用几分钟，把支持放进真实的学习、工作和生活里。</p>
+      <p class="service-modal-kicker">STEP / 03 · 育志</p>
+      <h2 id="service-modal-title">把经历说成职业故事，<em>让成长可以迁移。</em></h2>
+      <p class="service-modal-lede">当你能说清自己做了什么、解决了什么问题、形成了什么能力，就更容易把一次劳动经历带向简历、面试和下一步就业行动。</p>
       <div class="service-modal-section">
-        <div class="service-modal-section-title"><strong>一轮小练习可以这样开始</strong><span>约 5—10 分钟</span></div>
+        <div class="service-modal-section-title"><strong>一段经历可以这样整理</strong><span>从事实到行动</span></div>
         <div class="service-modal-list">
-          <div><strong>停一下</strong><small>把手机放下，感受三次呼吸，允许自己暂时不用解决问题。</small></div>
-          <div><strong>做一点</strong><small>只挑一件最小的行动：写一句话、走几步或整理一个角落。</small></div>
-          <div><strong>留一句</strong><small>记下“刚刚什么对我有帮助”，让方法慢慢变成经验。</small></div>
+          <div><strong>事实</strong><small>写清任务、角色、投入时间和实际完成的成果。</small></div>
+          <div><strong>能力</strong><small>提炼目标拆解、协作、问题解决或项目管理等能力证据。</small></div>
+          <div><strong>行动</strong><small>形成一条简历要点、一个STAR故事和下一步就业行动。</small></div>
         </div>
-        <p class="service-modal-note"><strong>不用追求完美：</strong>完成一小步，不代表所有问题都解决了，但它会让下一步更容易出现。</p>
+        <p class="service-modal-note"><strong>不用夸大经历：</strong>从真实任务和可核对的成果出发，才能形成可信的职业表达。</p>
       </div>
       <div class="service-modal-actions"><button class="button button-primary" type="button" data-service-modal-action="jump-support">进入心理支持区 <span aria-hidden="true">→</span></button></div>`,
     growth: `
-      <p class="service-modal-kicker">STEP / 04 · 慢慢变好</p>
-      <h2 id="service-modal-title">把微小变化留下来，<em>给未来的自己一条线索。</em></h2>
-      <p class="service-modal-lede">成长不总是明显的进步，有时只是今天比昨天多照顾了自己一点。留下记录，是为了在需要的时候看见：我其实已经走过一段路。</p>
+      <p class="service-modal-kicker">STEP / 04 · 21天任务</p>
+      <h2 id="service-modal-title">让改变留下证据，<em>给未来的自己一条线索。</em></h2>
+      <p class="service-modal-lede">21天劳动成长任务把测评反馈带回真实场景，记录时长、作品、反思与能力证据，让一次实践变成可以继续的成长档案。</p>
       <div class="service-modal-section">
-        <div class="service-modal-section-title"><strong>今天可以记下三句话</strong><span>成长记录</span></div>
+        <div class="service-modal-section-title"><strong>每次任务可以记下三件事</strong><span>实践证据</span></div>
         <div class="service-modal-list">
-          <div><strong>我发现……</strong><small>今天的我，有一个值得被看见的感受或需要。</small></div>
-          <div><strong>我做到……</strong><small>哪怕很小，我为自己做了一件什么事？</small></div>
-          <div><strong>下一步……</strong><small>我愿意在合适的时候，再试一个什么小行动？</small></div>
+          <div><strong>我完成……</strong><small>今天投入了什么任务，留下了什么作品或结果？</small></div>
+          <div><strong>我学会……</strong><small>这项劳动让我看见了哪一项能力、价值或心理资源？</small></div>
+          <div><strong>我继续……</strong><small>下一次想怎样调整任务，并把它带向学习或就业行动？</small></div>
         </div>
-        <p class="service-modal-note"><strong>给自己的提醒：</strong>慢慢来不是停在原地，能够继续，就是很重要的变化。</p>
+        <p class="service-modal-note"><strong>给自己的提醒：</strong>不以活动数量替代真实效果，让每项记录都回到任务、作品、反馈和下一步行动。</p>
       </div>
       <div class="service-modal-actions"><button class="button button-primary" type="button" data-service-modal-action="jump-goals">看看可以带走的内容 <span aria-hidden="true">→</span></button></div>`,
   };
@@ -517,9 +517,9 @@
     button.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(template);
-          showToast('自我照顾清单已复制，可以从了解自己开始。');
+          showToast('成长行动清单已复制，可以从真实劳动开始。');
         } catch {
-          showToast('复制未完成，请手动记下：状态、支持、小步行动。');
+          showToast('复制未完成，请手动记下：经历、能力、行动、支持与证据。');
         }
     });
   });
