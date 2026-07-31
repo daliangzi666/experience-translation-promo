@@ -1,16 +1,16 @@
 :root {
-  --paper: #F6F0E7;
-  --paper-deep: #E9E1D6;
-  --ink: #173F35;
-  --muted: #6F7168;
-  --line: rgba(23, 63, 53, .16);
-  --orange: #E76847;
-  --orange-dark: #B94B35;
-  --green: #173F35;
-  --yellow: #D3A23C;
+  --paper: #F5EEE5;
+  --paper-deep: #EADFD2;
+  --ink: #23231F;
+  --muted: #6F6B63;
+  --line: rgba(35, 35, 31, .14);
+  --orange: #CE6847;
+  --orange-dark: #9E4937;
+  --green: #1E6960;
+  --yellow: #F2BC54;
   --sage: #DCE7D8;
-  --white: #FFFCF6;
-  --shadow: 0 24px 60px rgba(23, 63, 53, .12);
+  --white: #FFFAF4;
+  --shadow: 0 24px 60px rgba(65, 42, 24, .12);
   --serif: Georgia, "Noto Serif SC", "Songti SC", serif;
   --sans: "Microsoft YaHei", "Noto Sans SC", "PingFang SC", sans-serif;
 }
@@ -222,7 +222,7 @@ h2 { margin-bottom: 0; font-size: clamp(42px, 5vw, 64px); line-height: 1.1; }
 .service-card { position: relative; min-height: 300px; padding: 24px 24px 22px; overflow: hidden; }
 .service-card::after { content: ""; position: absolute; width: 190px; height: 190px; right: -86px; bottom: -82px; border: 1px solid currentColor; border-radius: 50%; opacity: .18; }
 .service-assess { color: #8F3D2F; background: #F0B09A; }
-.service-support { color: #173F35; background: #B7D4C8; }
+.service-support { color: var(--green); background: #B7D4C8; }
 .service-course { color: #6C4C1F; background: #E7C978; }
 .service-game { color: #426053; background: #B7CBB8; }
 .service-article { color: #426053; background: #DCE7D8; }
@@ -233,7 +233,7 @@ h2 { margin-bottom: 0; font-size: clamp(42px, 5vw, 64px); line-height: 1.1; }
 .service-card p { position: relative; z-index: 1; max-width: 260px; min-height: 92px; margin-bottom: 20px; font-size: 13px; line-height: 1.75; }
 .service-tag { position: relative; z-index: 1; display: inline-block; padding-top: 11px; border-top: 1px solid currentColor; font-size: 11px; font-weight: 800; letter-spacing: .06em; opacity: .76; }
 
-.experience-section { padding: 135px 0 145px; border-top: 1px solid var(--line); background: #EEE7DC; }
+.experience-section { padding: 135px 0 145px; border-top: 1px solid var(--line); background: var(--paper-deep); }
 .experience-heading { max-width: 720px; margin-bottom: 54px; }
 .experience-heading h2 { margin-bottom: 20px; }
 .experience-heading > p:last-child { max-width: 520px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.85; }
