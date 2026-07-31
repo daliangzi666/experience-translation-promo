@@ -78,6 +78,6 @@ README 说明新增文章、视频和封面的目录及数据字段。
 
 运行 `node --check site/script.js`、`git diff --check`，检查内容条目数量、文章详情页、视频文件、poster、账号名和页面锚点。
 
-- [ ] **Step 3: 提交、推送与线上验收**
+- [x] **Step 3: 提交、推送与线上验收**
 
 推送到 `main`，等待 GitHub Actions 成功，并检查线上首页、文章详情页和视频资源状态。
