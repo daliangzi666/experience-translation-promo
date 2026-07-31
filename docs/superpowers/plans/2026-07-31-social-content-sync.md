@@ -13,6 +13,7 @@
 - 社交账号名称统一显示为“劳有心获成长局”。
 - 当前内容至少包含两篇文章和两条视频：AI与成就感、经历翻译四步法及其两种视频成片。
 - 账号 logo 和劳动主题海报作为网页视觉素材使用，不覆盖原始附件。
+- 小红书与抖音入口图作为二维码卡片使用，不覆盖原始附件。
 - 以后新增内容只需向 `site/content-feed.js` 追加记录并放入对应媒体目录。
 - 不将“已准备的内容”表述为已发布或已完成干预成效。
 
@@ -81,3 +82,26 @@ README 说明新增文章、视频和封面的目录及数据字段。
 - [x] **Step 3: 提交、推送与线上验收**
 
 推送到 `main`，等待 GitHub Actions 成功，并检查线上首页、文章详情页和视频资源状态。
+
+### Task 4: 增加社交平台入口二维码
+
+**Files:**
+- Create: `site/assets/xiaohongshu-entry.jpg`
+- Create: `site/assets/douyin-entry.jpg`
+- Modify: `site/content-feed.js`
+- Modify: `site/index.html`
+- Modify: `site/script.js`
+- Modify: `site/styles.css`
+- Modify: `README.md`
+
+- [x] **Step 1: 放入两张平台入口图**
+
+将用户提供的小红书与抖音图片复制到站点资源目录，保留二维码原图。
+
+- [x] **Step 2: 渲染账号卡片**
+
+在首页“内容更新”区域展示两个二维码入口，统一显示账号名“劳有心获成长局”和账号号 `laoyouxinhuo`。
+
+- [ ] **Step 3: 验证并重新发布**
+
+校验脚本、图片资源、页面结构和线上 GitHub Pages 结果。

@@ -4,6 +4,23 @@ window.socialAccount = {
   updateNote: '文章与视频持续同步更新',
 };
 
+window.socialPlatforms = [
+  {
+    platform: '小红书',
+    account: '劳有心获成长局',
+    handle: 'laoyouxinhuo',
+    image: './assets/xiaohongshu-entry.jpg',
+    note: '扫码进入小红书主页',
+  },
+  {
+    platform: '抖音',
+    account: '劳有心获成长局',
+    handle: 'laoyouxinhuo',
+    image: './assets/douyin-entry.jpg',
+    note: '扫码进入抖音主页',
+  },
+];
+
 window.socialFeed = [
   {
     type: 'article',

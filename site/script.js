@@ -27,6 +27,15 @@
     }).join('');
   };
 
+  const renderSocialPlatforms = () => {
+    const channels = document.querySelector('[data-social-platforms]');
+    const platforms = Array.isArray(window.socialPlatforms) ? window.socialPlatforms : [];
+    if (!channels || !platforms.length) return;
+
+    channels.innerHTML = platforms.map((platform) => `<article class="channel-card"><div class="channel-copy"><span class="channel-platform">${escapeHtml(platform.platform)}</span><strong>${escapeHtml(platform.account)}</strong><small>${escapeHtml(platform.note)}</small><span class="channel-handle">${escapeHtml(platform.handle)}</span></div><img src="${escapeHtml(platform.image)}" alt="${escapeHtml(platform.platform)}账号入口二维码" loading="lazy" /></article>`).join('');
+  };
+
+  renderSocialPlatforms();
   renderSocialFeed();
 
   const showToast = (message) => {
