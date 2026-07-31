@@ -307,6 +307,64 @@
       </div>`,
   };
 
+  const journeyTemplates = {
+    state: `
+      <p class="service-modal-kicker">STEP / 01 · 先看见</p>
+      <h2 id="service-modal-title">先给此刻的自己，<em>一个温和的名字。</em></h2>
+      <p class="service-modal-lede">看见状态不是给自己下结论，而是先知道“我正在经历什么”。从一个感受、一处身体反应或一件最占心力的事开始，就已经足够。</p>
+      <div class="service-modal-section">
+        <div class="service-modal-section-title"><strong>可以留意这三件事</strong><span>不急着判断</span></div>
+        <div class="service-modal-list">
+          <div><strong>感受</strong><small>最近最常出现的情绪是什么？它想告诉你什么？</small></div>
+          <div><strong>身体</strong><small>睡眠、精力和紧绷感，有没有在提醒你慢下来？</small></div>
+          <div><strong>处境</strong><small>此刻最消耗你的事情是什么？最希望得到哪种支持？</small></div>
+        </div>
+        <p class="service-modal-note"><strong>给自己的提醒：</strong>不需要把一切都说清楚，先把一个小小的感受放到桌面上。</p>
+      </div>
+      <div class="service-modal-actions"><button class="button button-primary" type="button" data-service-modal-action="jump-assessment">进入 03 测评区 <span aria-hidden="true">→</span></button></div>`,
+    method: `
+      <p class="service-modal-kicker">STEP / 02 · 找到方法</p>
+      <h2 id="service-modal-title">不用一次做完，<em>先选一个愿意试的入口。</em></h2>
+      <p class="service-modal-lede">适合你的方法，不一定是别人推荐最多的那个。可以从“我现在愿意做什么”出发，给自己一个轻一点的选择。</p>
+      <div class="service-modal-section">
+        <div class="service-modal-section-title"><strong>按当下的需要来选</strong><span>选一个就好</span></div>
+        <div class="service-modal-list">
+          <div><strong>想先理解</strong><small>从测评、科普文章或视频开始，给经历多一个解释角度。</small></div>
+          <div><strong>想先缓一缓</strong><small>做一轮呼吸练习、短课或解压游戏，把注意力带回当下。</small></div>
+          <div><strong>想有人陪</strong><small>进入心理支持区，选择一句最接近此刻的感受。</small></div>
+        </div>
+      </div>
+      <div class="service-modal-actions"><button class="button button-primary" type="button" data-service-modal-action="jump-services">查看支持服务 <span aria-hidden="true">→</span></button></div>`,
+    practice: `
+      <p class="service-modal-kicker">STEP / 03 · 练习支持</p>
+      <h2 id="service-modal-title">把一个方法带回今天，<em>就已经在改变。</em></h2>
+      <p class="service-modal-lede">练习不需要很长，也不要求一次见效。你可以用几分钟，把支持放进真实的学习、工作和生活里。</p>
+      <div class="service-modal-section">
+        <div class="service-modal-section-title"><strong>一轮小练习可以这样开始</strong><span>约 5—10 分钟</span></div>
+        <div class="service-modal-list">
+          <div><strong>停一下</strong><small>把手机放下，感受三次呼吸，允许自己暂时不用解决问题。</small></div>
+          <div><strong>做一点</strong><small>只挑一件最小的行动：写一句话、走几步或整理一个角落。</small></div>
+          <div><strong>留一句</strong><small>记下“刚刚什么对我有帮助”，让方法慢慢变成经验。</small></div>
+        </div>
+        <p class="service-modal-note"><strong>不用追求完美：</strong>完成一小步，不代表所有问题都解决了，但它会让下一步更容易出现。</p>
+      </div>
+      <div class="service-modal-actions"><button class="button button-primary" type="button" data-service-modal-action="jump-support">进入心理支持区 <span aria-hidden="true">→</span></button></div>`,
+    growth: `
+      <p class="service-modal-kicker">STEP / 04 · 慢慢变好</p>
+      <h2 id="service-modal-title">把微小变化留下来，<em>给未来的自己一条线索。</em></h2>
+      <p class="service-modal-lede">成长不总是明显的进步，有时只是今天比昨天多照顾了自己一点。留下记录，是为了在需要的时候看见：我其实已经走过一段路。</p>
+      <div class="service-modal-section">
+        <div class="service-modal-section-title"><strong>今天可以记下三句话</strong><span>成长记录</span></div>
+        <div class="service-modal-list">
+          <div><strong>我发现……</strong><small>今天的我，有一个值得被看见的感受或需要。</small></div>
+          <div><strong>我做到……</strong><small>哪怕很小，我为自己做了一件什么事？</small></div>
+          <div><strong>下一步……</strong><small>我愿意在合适的时候，再试一个什么小行动？</small></div>
+        </div>
+        <p class="service-modal-note"><strong>给自己的提醒：</strong>慢慢来不是停在原地，能够继续，就是很重要的变化。</p>
+      </div>
+      <div class="service-modal-actions"><button class="button button-primary" type="button" data-service-modal-action="jump-goals">看看可以带走的内容 <span aria-hidden="true">→</span></button></div>`,
+  };
+
   const stopGame = (message) => {
     if (gameTimer) window.clearInterval(gameTimer);
     gameTimer = null;
@@ -353,15 +411,18 @@
     }, 1000);
   };
 
-  const openServiceModal = (type, trigger) => {
-    if (!serviceModal || !serviceModalContent || !serviceTemplates[type]) return;
+  const openModalContent = (content, trigger) => {
+    if (!serviceModal || !serviceModalContent || !content) return;
     stopGame();
     serviceReturnFocus = trigger;
-    serviceModalContent.innerHTML = serviceTemplates[type];
+    serviceModalContent.innerHTML = content;
     serviceModal.hidden = false;
     document.body.style.overflow = 'hidden';
     serviceModal.querySelector('.service-modal-close')?.focus();
   };
+
+  const openServiceModal = (type, trigger) => openModalContent(serviceTemplates[type], trigger);
+  const openJourneyModal = (type, trigger) => openModalContent(journeyTemplates[type], trigger);
 
   const closeServiceModal = () => {
     if (!serviceModal || serviceModal.hidden) return;
@@ -375,6 +436,10 @@
 
   document.querySelectorAll('[data-service-open]').forEach((button) => {
     button.addEventListener('click', () => openServiceModal(button.dataset.serviceOpen, button));
+  });
+
+  document.querySelectorAll('[data-journey-open]').forEach((button) => {
+    button.addEventListener('click', () => openJourneyModal(button.dataset.journeyOpen, button));
   });
 
   serviceModal?.addEventListener('click', (event) => {
@@ -417,9 +482,15 @@
     if (action === 'jump-assessment') {
       closeServiceModal();
       document.querySelector('#assessment')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (action === 'jump-services') {
+      closeServiceModal();
+      document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else if (action === 'jump-support') {
       closeServiceModal();
       document.querySelector('#support')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (action === 'jump-goals') {
+      closeServiceModal();
+      document.querySelector('#goals')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else if (action === 'start-game') {
       startGame();
     }
