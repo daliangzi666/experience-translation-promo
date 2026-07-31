@@ -1,6 +1,6 @@
 window.socialAccount = {
   name: '劳有心获成长局',
-  subtitle: '大学生就业成长、就业适配心理与劳动实践内容',
+  subtitle: '心理支持、成长服务与劳动实践内容',
   updateNote: '文章与视频持续同步更新',
 };
 
@@ -21,6 +21,7 @@ window.socialPlatforms = [
   },
 ];
 
+// 每次新增文章或视频时，在数组中增加一项即可同步到网页内容区。
 window.socialFeed = [
   {
     type: 'article',

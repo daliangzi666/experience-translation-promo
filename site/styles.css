@@ -1,15 +1,16 @@
 :root {
-  --paper: #f5eee5;
-  --paper-deep: #eadfd2;
-  --ink: #23231f;
-  --muted: #6f6b63;
-  --line: rgba(35, 35, 31, .14);
-  --orange: #ce6847;
-  --orange-dark: #9e4937;
-  --green: #1e6960;
-  --yellow: #f2bc54;
-  --white: #fffaf4;
-  --shadow: 0 24px 60px rgba(65, 42, 24, .12);
+  --paper: #F6F0E7;
+  --paper-deep: #E9E1D6;
+  --ink: #173F35;
+  --muted: #6F7168;
+  --line: rgba(23, 63, 53, .16);
+  --orange: #E76847;
+  --orange-dark: #B94B35;
+  --green: #173F35;
+  --yellow: #D3A23C;
+  --sage: #DCE7D8;
+  --white: #FFFCF6;
+  --shadow: 0 24px 60px rgba(23, 63, 53, .12);
   --serif: Georgia, "Noto Serif SC", "Songti SC", serif;
   --sans: "Microsoft YaHei", "Noto Sans SC", "PingFang SC", sans-serif;
 }
@@ -106,7 +107,7 @@ h2 { margin-bottom: 0; font-size: clamp(42px, 5vw, 64px); line-height: 1.1; }
 .card-task { color: #8f3d2f; background: #e6a08c; }
 .card-action { color: #1d625a; background: #9dccbd; }
 .card-result { color: #6c4c1f; background: #f0c468; }
-.card-skill { color: #55435b; background: #c5b1cb; }
+.card-skill { color: #426053; background: #B7CBB8; }
 .card-index { font-size: 11px; font-weight: 800; letter-spacing: .1em; opacity: .76; }
 .card-symbol { position: absolute; top: 70px; right: 24px; font-family: var(--serif); font-size: 46px; font-weight: 700; }
 .method-card h3 { margin: 48px 0 11px; font-family: var(--serif); font-size: 36px; line-height: 1; }
@@ -220,12 +221,12 @@ h2 { margin-bottom: 0; font-size: clamp(42px, 5vw, 64px); line-height: 1.1; }
 .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .service-card { position: relative; min-height: 300px; padding: 24px 24px 22px; overflow: hidden; }
 .service-card::after { content: ""; position: absolute; width: 190px; height: 190px; right: -86px; bottom: -82px; border: 1px solid currentColor; border-radius: 50%; opacity: .18; }
-.service-assess { color: #8f3d2f; background: #e6a08c; }
-.service-support { color: #1d625a; background: #9dccbd; }
-.service-course { color: #6c4c1f; background: #f0c468; }
-.service-game { color: #55435b; background: #c5b1cb; }
-.service-article { color: #4e5b35; background: #c8d09d; }
-.service-video { color: #75482f; background: #e6be9e; }
+.service-assess { color: #8F3D2F; background: #F0B09A; }
+.service-support { color: #173F35; background: #B7D4C8; }
+.service-course { color: #6C4C1F; background: #E7C978; }
+.service-game { color: #426053; background: #B7CBB8; }
+.service-article { color: #426053; background: #DCE7D8; }
+.service-video { color: #75482F; background: #F0C3A8; }
 .service-topline { display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-weight: 800; letter-spacing: .1em; opacity: .78; }
 .service-symbol { font-family: var(--serif); font-size: 38px; line-height: 1; }
 .service-card h3 { position: relative; z-index: 1; margin: 42px 0 11px; font-family: var(--serif); font-size: 31px; line-height: 1; }
@@ -286,7 +287,7 @@ h2 { margin-bottom: 0; font-size: clamp(42px, 5vw, 64px); line-height: 1.1; }
   .content-image::after { right: -10px; width: 63px; height: 63px; font-size: 12px; }
 }
 
-/* Employment-focused information architecture */
+/* 心航计划信息架构 */
 .value-section { padding-top: 130px; padding-bottom: 135px; }
 .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .value-point { min-height: 226px; padding: 24px 23px; border-top: 3px solid var(--orange); background: rgba(255, 250, 244, .72); }
@@ -328,6 +329,7 @@ h2 { margin-bottom: 0; font-size: clamp(42px, 5vw, 64px); line-height: 1.1; }
 .social-title h2 { margin-bottom: 11px; font-size: clamp(36px, 4vw, 54px); }
 .social-title > p:not(.eyebrow) { max-width: 530px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
 .social-status { display: inline-flex; margin-top: 14px; padding: 6px 11px; border: 1px solid rgba(30, 105, 96, .28); border-radius: 999px; color: var(--green); font-size: 10px; font-weight: 800; letter-spacing: .08em; }
+.social-sync-note { margin: 0 0 24px; padding: 11px 14px; border-left: 3px solid var(--yellow); color: var(--muted); background: rgba(211, 162, 60, .11); font-size: 12px; line-height: 1.7; }
 .social-channels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 740px; margin: 0 auto 43px; }
 .channel-card { display: grid; grid-template-columns: minmax(0, 1fr) 150px; gap: 16px; align-items: center; padding: 16px; border: 1px solid rgba(35, 35, 31, .11); background: var(--white); box-shadow: 0 10px 28px rgba(65, 42, 24, .07); }
 .channel-copy { display: flex; flex-direction: column; align-items: flex-start; }

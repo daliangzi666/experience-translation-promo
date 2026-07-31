@@ -1,6 +1,6 @@
 (() => {
   const toast = document.querySelector('[data-toast]');
-  const template = `就业成长自我梳理清单\n\n我当前的就业困惑：……\n我的兴趣、优势与价值取向：……\n我想探索的职业图景 / 目标岗位：……\n我需要补足的能力与实践：……\n我准备推进的生涯行动路径：……\n我需要的就业适配心理支持：……`;
+  const template = `劳有心获成长局·自我照顾清单\n\n我最近的状态：……\n我想先了解的方向：测评 / 心理支持 / 干预课程 / 解压游戏 / 科普内容\n我愿意为自己做的一件小事：……\n我需要联系的支持对象：……\n我想留下的变化：……`;
   let toastTimer;
 
   const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({
@@ -22,7 +22,9 @@
         : `<div class="feed-media"><img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" loading="lazy" /></div>`;
       const action = item.href
         ? `<a class="feed-link" href="${escapeHtml(item.href)}">阅读文章 <span aria-hidden="true">↗</span></a>`
-        : `<span class="feed-link feed-link-muted">账号内容 <span aria-hidden="true">✦</span></span>`;
+        : item.type === 'video'
+          ? `<span class="feed-link feed-link-muted">点击播放器观看 <span aria-hidden="true">▶</span></span>`
+          : `<span class="feed-link feed-link-muted">账号内容 <span aria-hidden="true">✦</span></span>`;
       return `<article class="feed-card feed-${escapeHtml(item.type)}">${media}<div class="feed-body"><div class="feed-meta"><span>${escapeHtml(item.category)}</span><time datetime="${escapeHtml(item.date)}">${escapeHtml(item.date)}</time></div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.excerpt)}</p>${action}</div></article>`;
     }).join('');
   };
@@ -50,10 +52,10 @@
     button.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(template);
-        showToast('就业成长清单已复制，可以从自我觉察开始。');
-      } catch {
-        showToast('复制未完成，请手动记下：困惑、优势、职业图景、行动路径。');
-      }
+          showToast('自我照顾清单已复制，可以从了解自己开始。');
+        } catch {
+          showToast('复制未完成，请手动记下：状态、支持、小步行动。');
+        }
     });
   });
 
