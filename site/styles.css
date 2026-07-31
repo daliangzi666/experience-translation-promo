@@ -489,10 +489,6 @@ h2 { margin-bottom: 0; font-size: clamp(42px, 5vw, 64px); line-height: 1.1; }
 .goal-list span { color: var(--orange-dark); font-family: var(--serif); font-size: 13px; font-weight: 700; }
 .goal-list p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.75; }
 .goal-list strong { color: var(--ink); font-weight: 800; }
-.boundary-note { margin: 0 0 26px; padding: 13px 15px; border-left: 3px solid var(--green); background: rgba(30, 105, 96, .08); }
-.boundary-note strong { display: block; margin-bottom: 4px; color: var(--green); font-size: 11px; letter-spacing: .08em; }
-.boundary-note p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.75; }
-
 @media (max-width: 900px) {
   .value-grid { grid-template-columns: repeat(3, 1fr); }
 }
