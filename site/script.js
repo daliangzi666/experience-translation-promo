@@ -222,6 +222,213 @@
     });
   }
 
+  const serviceModal = document.querySelector('[data-service-modal]');
+  const serviceModalContent = serviceModal?.querySelector('[data-service-modal-content]');
+  let serviceReturnFocus = null;
+  let gameTimer = null;
+  let gameScore = 0;
+  let gameTime = 20;
+
+  const serviceTemplates = {
+    assessment: `
+      <p class="service-modal-kicker">ASSESSMENT / 01 · 现在就可以开始</p>
+      <h2 id="service-modal-title">先了解一下，<em>此刻的自己。</em></h2>
+      <p class="service-modal-lede">这里是一份轻量的自我了解工具，不给你贴标签，只帮助你把最近的状态说清楚一点。</p>
+      <div class="service-modal-section">
+        <div class="service-modal-section-title"><strong>你可以从这三个方向开始</strong><span>约 3—5 分钟</span></div>
+        <div class="service-modal-list">
+          <div><strong>近期状态</strong><small>了解这段时间的情绪与压力。</small></div>
+          <div><strong>学习与生活</strong><small>看看精力、睡眠和节奏是否平衡。</small></div>
+          <div><strong>支持需求</strong><small>找到你现在最需要的陪伴方式。</small></div>
+        </div>
+        <p class="service-modal-note"><strong>提示：</strong>测评结果仅供自我了解、课程匹配与成长记录，不替代临床诊断。你可以随时停下来。</p>
+      </div>
+      <div class="service-modal-actions"><button class="button button-primary" type="button" data-service-modal-action="jump-assessment">进入 03 测评区 <span aria-hidden="true">→</span></button></div>`,
+    support: `
+      <p class="service-modal-kicker">SUPPORT / 02 · 先照顾当下</p>
+      <h2 id="service-modal-title">今天需要哪一种<em>陪伴？</em></h2>
+      <p class="service-modal-lede">不用准备完整的答案。先选一个最接近你的感受，我们会给你一条轻一点的下一步建议。</p>
+      <div class="service-modal-section">
+        <div class="service-modal-section-title"><strong>此刻的我……</strong><span>选一个就好</span></div>
+        <div class="modal-choice-grid">
+          <button class="modal-choice" type="button" data-modal-mood="有点累">有点累</button>
+          <button class="modal-choice" type="button" data-modal-mood="压力中">压力中</button>
+          <button class="modal-choice" type="button" data-modal-mood="说不清">说不清</button>
+          <button class="modal-choice" type="button" data-modal-mood="还不错">还不错</button>
+        </div>
+        <p class="modal-support-response" data-modal-support-response>选择一个感受后，这里会出现一条适合现在的建议。</p>
+      </div>
+      <div class="service-modal-actions"><button class="button button-primary" type="button" data-service-modal-action="jump-support">进入心理支持区 <span aria-hidden="true">→</span></button></div>`,
+    course: `
+      <p class="service-modal-kicker">COURSE / 03 · 把方法练起来</p>
+      <h2>给压力一个出口，<em>给行动一个支点。</em></h2>
+      <p class="service-modal-lede">干预课程会把复杂的情绪和压力拆成一个个可以练习的小步骤。下面先提供两个体验单元，后续可以继续填充完整课程。</p>
+      <div class="service-modal-section">
+        <div class="service-modal-section-title"><strong>先试一节小课</strong><span>轻量体验</span></div>
+        <div class="modal-course-list">
+          <article class="modal-course-card"><small>压力调适 · 12 分钟</small><strong>把压力放在桌面上</strong><p>识别压力来源，练习把“全部都要做”拆成今天的一小步。</p><button class="modal-course-toggle" type="button" data-course-toggle>展开练习</button><div class="modal-course-detail">写下此刻最占脑子的三件事，再圈出一件“今天只做第一步”即可完成的事。</div></article>
+          <article class="modal-course-card"><small>睡眠支持 · 8 分钟</small><strong>睡前给大脑留白</strong><p>用一段短练习把注意力从反复思考带回呼吸和身体。</p><button class="modal-course-toggle" type="button" data-course-toggle>展开练习</button><div class="modal-course-detail">试着做三轮慢呼吸：吸气数 4 拍，呼气数 6 拍，把肩膀放松下来。</div></article>
+        </div>
+      </div>`,
+    game: `
+      <p class="service-modal-kicker">PLAY / 04 · 给自己十分钟</p>
+      <h2>接住一颗小光点，<em>把注意力带回来。</em></h2>
+      <p class="service-modal-lede">不需要追求高分，只要在 20 秒里把注意力放在眼前。点到光点后，它会换一个位置，慢慢玩一轮就好。</p>
+      <div class="service-modal-section">
+        <div class="service-modal-section-title"><strong>小光点练习</strong><span>20 秒互动</span></div>
+        <div class="modal-game-wrap">
+          <div class="modal-game-stats"><span>接住 <b data-game-score>0</b> 颗</span><span>剩余 <b data-game-time>20</b> 秒</span></div>
+          <div class="modal-game-board" data-game-board><button class="modal-game-target" type="button" data-game-target hidden aria-label="接住小光点">✦</button></div>
+          <button class="button button-light modal-game-start" type="button" data-service-modal-action="start-game">开始这一轮 <span aria-hidden="true">→</span></button>
+          <p class="modal-game-help" data-game-status>准备好后，点击开始，让眼睛跟着光点走。</p>
+        </div>
+      </div>`,
+    article: `
+      <p class="service-modal-kicker">READ / 05 · 读懂心理</p>
+      <h2>把复杂的心理知识，<em>讲得容易一点。</em></h2>
+      <p class="service-modal-lede">先从一篇文章开始，给自己的经历多一个解释角度。内容会持续更新，也欢迎把你想了解的问题留下来。</p>
+      <div class="service-modal-section">
+        <div class="service-modal-section-title"><strong>现在可以阅读</strong><span>科普文章</span></div>
+        <div class="modal-article-grid">
+          <article class="modal-content-card"><img src="./assets/article-experience-cover.png" alt="经历翻译四步法文章封面" /><div class="modal-content-card-body"><small>成长表达</small><h3>从“发过传单”到“能写进简历”</h3><p>把真实行动转化为可识别、可表达的能力线索。</p><a href="./articles/experience-translation/">打开文章 ↗</a></div></article>
+          <article class="modal-content-card"><img src="./assets/article-ai-cover.jpg" alt="AI与成就感文章封面" /><div class="modal-content-card-body"><small>成就感与协作</small><h3>AI把活儿都干完了，为什么我反而没成就感？</h3><p>聊聊参与感、成就感和人机协作中的心理体验。</p><a href="./articles/ai-achievement/">打开文章 ↗</a></div></article>
+        </div>
+      </div>`,
+    video: `
+      <p class="service-modal-kicker">WATCH / 06 · 轻松观看</p>
+      <h2>用一段短视频，<em>理解一段成长。</em></h2>
+      <p class="service-modal-lede">把方法讲得更轻一点，适合课堂分享，也适合在需要的时候暂停下来，慢慢看。</p>
+      <div class="service-modal-section">
+        <div class="service-modal-section-title"><strong>现在可以观看</strong><span>科普视频</span></div>
+        <div class="modal-video-grid">
+          <article class="modal-content-card"><video controls preload="metadata" poster="./assets/video-experience-poster.png"><source src="./media/experience-translation.mp4" type="video/mp4" />当前浏览器不支持视频播放。</video><div class="modal-content-card-body"><small>四步记录</small><h3>把经历说成能力｜四步成长记录</h3><p>把任务、行动、结果和能力，整理成一份可带走的成长证据。</p></div></article>
+          <article class="modal-content-card"><video controls preload="metadata" poster="./assets/video-paper-poster.jpg"><source src="./media/experience-translation-paper.mp4" type="video/mp4" />当前浏览器不支持视频播放。</video><div class="modal-content-card-body"><small>纸片叙事</small><h3>一张纸片，讲清一段成长</h3><p>用轻巧的纸片人叙事，把经历翻译的方法讲清楚。</p></div></article>
+        </div>
+      </div>`,
+  };
+
+  const stopGame = (message) => {
+    if (gameTimer) window.clearInterval(gameTimer);
+    gameTimer = null;
+    const target = serviceModal?.querySelector('[data-game-target]');
+    if (target) target.hidden = true;
+    const status = serviceModal?.querySelector('[data-game-status]');
+    if (status && message) status.textContent = message;
+  };
+
+  const updateGameStats = () => {
+    const score = serviceModal?.querySelector('[data-game-score]');
+    const time = serviceModal?.querySelector('[data-game-time]');
+    if (score) score.textContent = String(gameScore);
+    if (time) time.textContent = String(gameTime);
+  };
+
+  const moveGameTarget = () => {
+    const board = serviceModal?.querySelector('[data-game-board]');
+    const target = serviceModal?.querySelector('[data-game-target]');
+    if (!board || !target) return;
+    const x = 30 + Math.random() * Math.max(1, board.clientWidth - 60);
+    const y = 30 + Math.random() * Math.max(1, board.clientHeight - 60);
+    target.style.left = `${x}px`;
+    target.style.top = `${y}px`;
+  };
+
+  const startGame = () => {
+    stopGame();
+    gameScore = 0;
+    gameTime = 20;
+    updateGameStats();
+    const target = serviceModal?.querySelector('[data-game-target]');
+    const status = serviceModal?.querySelector('[data-game-status]');
+    const startButton = serviceModal?.querySelector('[data-service-modal-action="start-game"]');
+    if (!target || !status || !startButton) return;
+    target.hidden = false;
+    startButton.textContent = '重新开始这一轮 →';
+    status.textContent = '慢慢找，不用急。';
+    moveGameTarget();
+    gameTimer = window.setInterval(() => {
+      gameTime -= 1;
+      updateGameStats();
+      if (gameTime <= 0) stopGame(`这一轮完成：接住了 ${gameScore} 颗光点。先休息一下，也可以再来一轮。`);
+    }, 1000);
+  };
+
+  const openServiceModal = (type, trigger) => {
+    if (!serviceModal || !serviceModalContent || !serviceTemplates[type]) return;
+    stopGame();
+    serviceReturnFocus = trigger;
+    serviceModalContent.innerHTML = serviceTemplates[type];
+    serviceModal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    serviceModal.querySelector('.service-modal-close')?.focus();
+  };
+
+  const closeServiceModal = () => {
+    if (!serviceModal || serviceModal.hidden) return;
+    stopGame();
+    serviceModal.hidden = true;
+    serviceModalContent.innerHTML = '';
+    document.body.style.overflow = '';
+    serviceReturnFocus?.focus();
+    serviceReturnFocus = null;
+  };
+
+  document.querySelectorAll('[data-service-open]').forEach((button) => {
+    button.addEventListener('click', () => openServiceModal(button.dataset.serviceOpen, button));
+  });
+
+  serviceModal?.addEventListener('click', (event) => {
+    if (event.target.closest('[data-service-close]')) {
+      closeServiceModal();
+      return;
+    }
+
+    const moodButton = event.target.closest('[data-modal-mood]');
+    if (moodButton) {
+      serviceModal.querySelectorAll('[data-modal-mood]').forEach((button) => button.classList.toggle('is-selected', button === moodButton));
+      const response = serviceModal.querySelector('[data-modal-support-response]');
+      const responses = {
+        '有点累': '先从 8 分钟放松开始：把肩膀放下来，给自己一小段不需要完成任务的时间。',
+        '压力中': '先把压力写成三件具体的事，再挑一件今天只做第一步，不必一次解决全部。',
+        '说不清': '说不清也没有关系。你可以先做测评，或找一个愿意听你说的人陪你把感受慢慢理出来。',
+        '还不错': '很好，也可以把这份稳定记录下来，留给之后需要提醒自己的时候。',
+      };
+      if (response) response.textContent = responses[moodButton.dataset.modalMood];
+      return;
+    }
+
+    const courseToggle = event.target.closest('[data-course-toggle]');
+    if (courseToggle) {
+      const card = courseToggle.closest('.modal-course-card');
+      const isOpen = card?.classList.toggle('is-open');
+      courseToggle.textContent = isOpen ? '收起练习' : '展开练习';
+      return;
+    }
+
+    const target = event.target.closest('[data-game-target]');
+    if (target && gameTimer) {
+      gameScore += 1;
+      updateGameStats();
+      moveGameTarget();
+      return;
+    }
+
+    const action = event.target.closest('[data-service-modal-action]')?.dataset.serviceModalAction;
+    if (action === 'jump-assessment') {
+      closeServiceModal();
+      document.querySelector('#assessment')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (action === 'jump-support') {
+      closeServiceModal();
+      document.querySelector('#support')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (action === 'start-game') {
+      startGame();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && serviceModal && !serviceModal.hidden) closeServiceModal();
+  });
+
   renderSocialPlatforms();
   renderSocialFeed();
   renderAssessment();

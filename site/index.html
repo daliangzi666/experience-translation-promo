@@ -100,51 +100,57 @@
         </div>
 
         <div class="service-grid" data-reveal data-delay="120">
-          <article class="service-card service-assess">
+          <button class="service-card service-assess" type="button" data-service-open="assessment" aria-haspopup="dialog">
             <div class="service-topline"><span>了解自己</span><span class="service-symbol" aria-hidden="true">◌</span></div>
             <h3>快速测评</h3>
             <p>用几分钟了解近期状态，找到更适合你的支持方式。</p>
             <span class="service-tag">看见自己的状态与需要</span>
-          </article>
-          <article class="service-card service-support">
+          </button>
+          <button class="service-card service-support" type="button" data-service-open="support" aria-haspopup="dialog">
             <div class="service-topline"><span>有人听见</span><span class="service-symbol" aria-hidden="true">◎</span></div>
             <h3>心理支持</h3>
             <p>有人倾听，也有下一步。支持你整理情绪、压力和当下需要。</p>
             <span class="service-tag">不必独自面对当下</span>
-          </article>
-          <article class="service-card service-course">
+          </button>
+          <button class="service-card service-course" type="button" data-service-open="course" aria-haspopup="dialog">
             <div class="service-topline"><span>练习改变</span><span class="service-symbol" aria-hidden="true">✦</span></div>
             <h3>干预课程</h3>
             <p>围绕压力调适、自我效能与行动恢复，提供可练习的支持课程。</p>
             <span class="service-tag">把方法练成自己的能力</span>
-          </article>
-          <article class="service-card service-game">
+          </button>
+          <button class="service-card service-game" type="button" data-service-open="game" aria-haspopup="dialog">
             <div class="service-topline"><span>回到当下</span><span class="service-symbol" aria-hidden="true">♡</span></div>
             <h3>解压游戏</h3>
             <p>用十分钟呼吸、注意力和轻量互动，把自己带回当下。</p>
             <span class="service-tag">给情绪一个松动的空间</span>
-          </article>
-          <article class="service-card service-article">
+          </button>
+          <button class="service-card service-article" type="button" data-service-open="article" aria-haspopup="dialog">
             <div class="service-topline"><span>读懂心理</span><span class="service-symbol" aria-hidden="true">↗</span></div>
             <h3>科普文章</h3>
             <p>把复杂的心理健康知识讲得容易一点，读得懂，也用得上。</p>
             <span class="service-tag">在日常里获得一点新理解</span>
-          </article>
-          <article class="service-card service-video">
+          </button>
+          <button class="service-card service-video" type="button" data-service-open="video" aria-haspopup="dialog">
             <div class="service-topline"><span>轻松观看</span><span class="service-symbol" aria-hidden="true">▶</span></div>
             <h3>科普视频</h3>
             <p>用更轻的方式理解情绪、压力与成长，陪你在日常里慢慢练习。</p>
             <span class="service-tag">看得懂，也愿意继续看</span>
-          </article>
+          </button>
         </div>
       </section>
 
       <section class="experience-section" id="assessment-support">
         <div class="shell">
           <div class="experience-heading" data-reveal>
-            <p class="eyebrow">03 / 先从一个入口开始</p>
-            <h2>先听听自己，<br /><em>再决定下一步。</em></h2>
-            <p>测评不是给你贴标签，支持也不要求你先把话说完整。你可以从了解状态、选择陪伴或十分钟放松开始。</p>
+            <div class="experience-heading-index">
+              <strong>03</strong>
+              <span>了解自己的时刻</span>
+            </div>
+            <div class="experience-heading-copy">
+              <p class="eyebrow">从一个入口开始</p>
+              <h2>先听听自己，<br /><em>再决定下一步。</em></h2>
+              <p>测评不是给你贴标签，支持也不要求你先把话说完整。你可以从了解状态、选择陪伴或十分钟放松开始。</p>
+            </div>
           </div>
 
           <div class="experience-grid">
@@ -252,6 +258,14 @@
         <p>心理支持与成长服务 / 新文科实践创业</p>
       </div>
     </footer>
+
+    <div class="service-modal" data-service-modal hidden>
+      <div class="service-modal-backdrop" data-service-close></div>
+      <section class="service-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="service-modal-title" tabindex="-1">
+        <button class="service-modal-close" type="button" data-service-close aria-label="关闭内容窗口">×</button>
+        <div data-service-modal-content></div>
+      </section>
+    </div>
 
     <div class="toast" role="status" aria-live="polite" data-toast></div>
     <script src="./content-feed.js"></script>
