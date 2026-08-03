@@ -298,6 +298,7 @@
       <div class="service-modal-section">
         <div class="service-modal-section-title"><strong>现在可以阅读</strong><span>科普文章</span></div>
         <div class="modal-article-grid">
+          <article class="modal-content-card"><img src="./assets/emotional-labor-cover.png" alt="情绪劳动与边界练习文章封面" /><div class="modal-content-card-body"><small>心理支持 / 劳动科普</small><h3>总在替别人兜底，为什么越做越累？</h3><p>看见安抚、解释、缓冲和收尾这些容易被漏记的情绪劳动，练习把责任放回合适的位置。</p><a href="./articles/emotional-labor/">打开文章 ↗</a></div></article>
           <article class="modal-content-card"><img src="./assets/article-experience-cover.png" alt="经历翻译四步法文章封面" /><div class="modal-content-card-body"><small>成长表达</small><h3>从“发过传单”到“能写进简历”</h3><p>把真实行动转化为可识别、可表达的能力线索。</p><a href="./articles/experience-translation/">打开文章 ↗</a></div></article>
           <article class="modal-content-card"><img src="./assets/article-ai-cover.jpg" alt="AI与成就感文章封面" /><div class="modal-content-card-body"><small>成就感与协作</small><h3>AI把活儿都干完了，为什么我反而没成就感？</h3><p>聊聊参与感、成就感和人机协作中的心理体验。</p><a href="./articles/ai-achievement/">打开文章 ↗</a></div></article>
         </div>
@@ -309,6 +310,8 @@
       <div class="service-modal-section">
         <div class="service-modal-section-title"><strong>现在可以观看</strong><span>科普视频</span></div>
         <div class="modal-video-grid">
+          <article class="modal-content-card"><video controls preload="metadata" poster="./assets/emotional-labor-cover.png"><source src="./media/emotional-labor-explainer.mp4" type="video/mp4" />当前浏览器不支持视频播放。</video><div class="modal-content-card-body"><small>心理支持</small><h3>情绪劳动：那些没写进任务清单的消耗</h3><p>从安抚、翻译到收尾，看见一边做事、一边接住别人情绪的隐形劳动。</p></div></article>
+          <article class="modal-content-card"><video controls preload="metadata" poster="./assets/emotional-labor-boundary.png"><source src="./media/emotional-labor-boundary.mp4" type="video/mp4" />当前浏览器不支持视频播放。</video><div class="modal-content-card-body"><small>边界练习</small><h3>边界练习：把责任放回合适的位置</h3><p>用角色、权限和结束条件，把“我来兜底”换成清楚、可执行的表达。</p></div></article>
           <article class="modal-content-card"><video controls preload="metadata" poster="./assets/video-experience-poster.png"><source src="./media/experience-translation.mp4" type="video/mp4" />当前浏览器不支持视频播放。</video><div class="modal-content-card-body"><small>四步记录</small><h3>把经历说成能力｜四步成长记录</h3><p>把任务、行动、结果和能力，整理成一份可带走的成长证据。</p></div></article>
           <article class="modal-content-card"><video controls preload="metadata" poster="./assets/video-paper-poster.jpg"><source src="./media/experience-translation-paper.mp4" type="video/mp4" />当前浏览器不支持视频播放。</video><div class="modal-content-card-body"><small>纸片叙事</small><h3>一张纸片，讲清一段成长</h3><p>用轻巧的纸片人叙事，把经历翻译的方法讲清楚。</p></div></article>
         </div>

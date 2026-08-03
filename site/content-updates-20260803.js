@@ -1,0 +1,30 @@
+window.socialFeed = [
+  {
+    type: 'article',
+    date: '2026-08-03',
+    category: '心理支持 / 劳动科普',
+    title: '总在替别人兜底，为什么越做越累？',
+    excerpt: '看见安抚、解释、缓冲和收尾这些容易被漏记的情绪劳动，也练习把责任放回合适的位置。',
+    image: './assets/emotional-labor-cover.png',
+    href: './articles/emotional-labor/',
+  },
+  {
+    type: 'video',
+    date: '2026-08-03',
+    category: '心理支持视频',
+    title: '情绪劳动：那些没写进任务清单的消耗',
+    excerpt: '从安抚、翻译到收尾，看见一边做事、一边接住别人情绪的隐形劳动。',
+    poster: './assets/emotional-labor-cover.png',
+    src: './media/emotional-labor-explainer.mp4',
+  },
+  {
+    type: 'video',
+    date: '2026-08-03',
+    category: '心理支持视频',
+    title: '边界练习：把责任放回合适的位置',
+    excerpt: '用角色、权限和结束条件，把“我来兜底”换成清楚、可执行的表达。',
+    poster: './assets/emotional-labor-boundary.png',
+    src: './media/emotional-labor-boundary.mp4',
+  },
+  ...(Array.isArray(window.socialFeed) ? window.socialFeed : []),
+];
