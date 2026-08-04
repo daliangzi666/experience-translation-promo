@@ -6,15 +6,11 @@
 <title>劳动获得感｜劳动成长科普</title>
 <style>
 *{box-sizing:border-box} body{margin:0;background:#ece7df;color:#35251e;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif}
-.toolbar{position:sticky;top:0;z-index:5;display:flex;gap:12px;align-items:center;justify-content:center;padding:12px;background:rgba(52,37,29,.94);box-shadow:0 2px 12px rgba(0,0,0,.18)}
-.toolbar button{appearance:none;border:0;border-radius:999px;background:#fff3df;color:#5a2f1a;font-size:15px;font-weight:700;padding:10px 22px;cursor:pointer}
-.toolbar span{color:#f5e9d8;font-size:13px}
 .phone{width:min(100%,430px);margin:22px auto 50px;background:#fff;box-shadow:0 10px 38px rgba(64,38,24,.16);padding:22px 18px 36px}
-@media(max-width:520px){.toolbar{align-items:stretch;flex-direction:column;padding:10px 16px}.toolbar span{text-align:center}.phone{margin:0 auto;box-shadow:none;padding:20px 16px}}
+@media(max-width:520px){.phone{margin:0 auto;box-shadow:none;padding:20px 16px}}
 </style>
 </head>
 <body>
-<div class="toolbar"><button id="copyBtn">复制正文</button></div>
 <main class="phone"><article id="article"><section style="font-family: 'Noto Serif SC', 'Songti SC', 'Source Han Serif SC', 'PingFang SC', serif; font-size: 15.5px; color: #3a2e26; line-height: 1.9; letter-spacing: 0.5px; word-spacing: 2px; padding: 20px 22px; background: #fbf7f0;">
 <blockquote style="margin: 26px 0; padding: 20px 24px; background: #f4ead8; border-left: 4px solid #c9a27d; color: #5a4636; font-size: 14.5px; border-radius: 0 6px 6px 0; line-height: 1.9; font-style: italic;"><strong style="color: #5a2f1a; font-weight: 700; border-bottom: 2px solid #e8c88a; padding: 0 1px;">劳有所获·职有底气 · 科普01</strong>  我们不劝你“多吃苦”，只想聊聊：为什么有些忙碌让人疲惫，有些亲手完成的小事却会变成底气。</blockquote>
 <p style="margin: 18px 0; text-indent: 0; text-align: justify; color: #3a2e26; line-height: 1.95;">你可能有过这样的时刻。</p>
@@ -91,14 +87,4 @@
 <ol style="margin: 20px 0; padding-left: 0; list-style: none; counter-reset: list;"><li style="margin: 12px 0; line-height: 1.9; color: #3a2e26; font-weight: 400;"><span style="display: inline-block; color: #7a3a28; font-family: 'Georgia','Times New Roman',serif; font-weight: 400; font-size: 24px; font-style: italic; margin-right: 10px; min-width: 24px; line-height: 1; vertical-align: -3px;">1</span>Norton, M. I., Mochon, D., &amp; Ariely, D. (2012). <em style="font-style: italic; color: #7a4e3b;">The IKEA effect: When labor leads to love</em>. Journal of Consumer Psychology, 22(3), 453–460. https://doi.org/10.1016/j.jcps.2011.08.002</li>
 <li style="margin: 12px 0; line-height: 1.9; color: #3a2e26; font-weight: 400;"><span style="display: inline-block; color: #7a3a28; font-family: 'Georgia','Times New Roman',serif; font-weight: 400; font-size: 24px; font-style: italic; margin-right: 10px; min-width: 24px; line-height: 1; vertical-align: -3px;">2</span>Lee, E. H., Yin, Y., Jia, N., &amp; Wakslak, C. J. (2026). <em style="font-style: italic; color: #7a4e3b;">Relying on AI at work reduces self-efficacy, ownership, and meaning while active collaboration mitigates the effects</em>. Scientific Reports, 16, 13583. https://doi.org/10.1038/s41598-026-42312-6</li></ol>
 </section></article></main>
-<script>
-const btn=document.getElementById('copyBtn'),article=document.getElementById('article');
-btn.addEventListener('click',()=>{
-  const range=document.createRange();range.selectNodeContents(article);
-  const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);
-  let ok=false;try{ok=document.execCommand('copy')}catch(e){ok=false}
-  sel.removeAllRanges();btn.textContent=ok?'已复制正文':'请手动选择复制';
-  window.setTimeout(()=>{btn.textContent='复制正文'},1800);
-});
-</script>
 </body></html>
